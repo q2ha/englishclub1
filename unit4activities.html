@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 Activities</title>
+    <style>
+        body {
+            background-color: #ffe7c3; /* Background color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            background-color: #f5ebda;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 120px; /* To avoid overlap with the groups */
+        }
+
+        .section-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            flex: 1;
+            min-width: 180px;
+            margin: 0 10px;
+        }
+
+        .section button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f5ebda;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .section button.solved {
+            background-color: #d4edda; /* Light green for solved */
+            color: #155724;
+        }
+
+        .section button.not-solved {
+            background-color: #f8d7da; /* Light red for unsolved */
+            color: #721c24;
+        }
+
+        .section button:hover {
+            background-color: #fbddaa;
+        }
+
+        .groups {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f3f3f3; /* Light gray for better contrast */
+            border-top: 1px solid #ddd;
+            padding: 10px 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .group {
+            display: inline-block;
+            margin: 0;
+            padding: 10px;
+            background-color: #e2f0cb; /* Light green for groups */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            width: 180px;
+        }
+
+        .group div {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .group .control-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .group .control-buttons button {
+            background-color: #f5ebda;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .group .control-buttons button:hover {
+            background-color: #fbddaa;
+        }
+
+        .group .control-buttons span {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .return-button {
+            background-color: #f5ebda;
+            color: #333;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px auto; /* توسيط الزر */
+            display: block; /* لتحويل الزر إلى عنصر كتلة */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .return-button:hover {
+            background-color: #fbddaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit 4 Activities</h1>
+        <div class="divider"></div>
+
+        <!-- Section Container -->
+        <div class="section-container">
+            <!-- Grammar Section -->
+            <div class="section">
+                <h2>Grammar</h2>
+                <button id="grammar100" class="not-solved" onclick="navigateToQuestion(16, 'grammar')">Question 1</button>
+                <button id="grammar200" class="not-solved" onclick="navigateToQuestion(17, 'grammar')">Question 2</button>
+                <button id="grammar300" class="not-solved" onclick="navigateToQuestion(18, 'grammar')">Question 3</button>
+                <button id="grammar400" class="not-solved" onclick="navigateToQuestion(19, 'grammar')">Question 4</button>
+                <button id="grammar500" class="not-solved" onclick="navigateToQuestion(20, 'grammar')">Question 5</button>
+            </div>
+
+            <!-- Listen Section -->
+            <div class="section">
+                <h2>Listen</h2>
+                <button id="listen100" class="not-solved" onclick="navigateToQuestion(16, 'listen')">Question 1</button>
+                <button id="listen200" class="not-solved" onclick="navigateToQuestion(17, 'listen')">Question 2</button>
+                <button id="listen300" class="not-solved" onclick="navigateToQuestion(18, 'listen')">Question 3</button>
+                <button id="listen400" class="not-solved" onclick="navigateToQuestion(19, 'listen')">Question 4</button>
+                <button id="listen500" class="not-solved" onclick="navigateToQuestion(20, 'listen')">Question 5</button>
+            </div>
+
+            <!-- Scramble the Word Section -->
+            <div class="section">
+                <h2>Scramble the Word</h2>
+                <button id="scramble100" class="not-solved" onclick="navigateToQuestion(16, 'scramble')">Question 1</button>
+                <button id="scramble200" class="not-solved" onclick="navigateToQuestion(17, 'scramble')">Question 2</button>
+                <button id="scramble300" class="not-solved" onclick="navigateToQuestion(18, 'scramble')">Question 3</button>
+                <button id="scramble400" class="not-solved" onclick="navigateToQuestion(19, 'scramble')">Question 4</button>
+                <button id="scramble500" class="not-solved" onclick="navigateToQuestion(20, 'scramble')">Question 5</button>
+            </div>
+
+            <!-- Fill in the Blanks Section -->
+            <div class="section">
+                <h2>Fill in the Blanks</h2>
+                <button id="fillintheblanks100" class="not-solved" onclick="navigateToQuestion(16, 'fillintheblanks')">Question 1</button>
+                <button id="fillintheblanks200" class="not-solved" onclick="navigateToQuestion(17, 'fillintheblanks')">Question 2</button>
+                <button id="fillintheblanks300" class="not-solved" onclick="navigateToQuestion(18, 'fillintheblanks')">Question 3</button>
+                <button id="fillintheblanks400" class="not-solved" onclick="navigateToQuestion(19, 'fillintheblanks')">Question 4</button>
+                <button id="fillintheblanks500" class="not-solved" onclick="navigateToQuestion(20, 'fillintheblanks')">Question 5</button>
+            </div>
+        </div>
+        <button class="return-button" onclick="window.location.href='questions.html'">Back to unit Activities</button>
+    </div>
+
+    <!-- Group Buttons -->
+    <div class="groups">
+        <div class="group">
+            <div>Group 1</div>
+            <div class="control-buttons">
+                <button onclick="updateScore('group1', 100)">+</button>
+                <span id="score-group1">0</span>
+                <button onclick="updateScore('group1', -100)">-</button>
+            </div>
+        </div>
+        <div class="group">
+            <div>Group 2</div>
+            <div class="control-buttons">
+                <button onclick="updateScore('group2', 100)">+</button>
+                <span id="score-group2">0</span>
+                <button onclick="updateScore('group2', -100)">-</button>
+            </div>
+        </div>
+        <div class="group">
+            <div>Group 3</div>
+            <div class="control-buttons">
+                <button onclick="updateScore('group3', 100)">+</button>
+                <span id="score-group3">0</span>
+                <button onclick="updateScore('group3', -100)">-</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Function to navigate to question page
+    function navigateToQuestion(questionId, section) {
+        // Choose a random group
+        const groupCount = 3; // عدد المجموعات
+        const randomGroup = Math.floor(Math.random() * groupCount) + 1; // اختيار مجموعة عشوائية من 1 إلى 3
+        alert(`This question is directed to Group ${randomGroup}.`);
+
+        // Save current question state
+        const solvedQuestions = JSON.parse(localStorage.getItem('solvedQuestions')) || {};
+        solvedQuestions[`${section}${questionId}`] = true;
+        localStorage.setItem('solvedQuestions', JSON.stringify(solvedQuestions));
+
+        // Save scores before navigating
+        const scores = {
+            group1: parseInt(document.getElementById('score-group1').textContent),
+            group2: parseInt(document.getElementById('score-group2').textContent),
+            group3: parseInt(document.getElementById('score-group3').textContent),
+        };
+        localStorage.setItem('groupScores', JSON.stringify(scores));
+
+        // Navigate to question page
+        window.location.href = `${section}${questionId}.html?group=${randomGroup}`;
+    }
+</script>
+</body>
+</html>

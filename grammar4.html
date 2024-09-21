@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Question 4</title>
+    <style>
+        body {
+            background-color: #ffe7c3;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #f5ebda;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .answers {
+            margin-bottom: 20px;
+        }
+
+        .answer-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f5ebda;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .answer-button:hover {
+            background-color: #fbddaa;
+        }
+
+        .result {
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f5ebda;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #fbddaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grammar Question 4 (200 points)</h1>
+        <div class="question">
+            What auxiliary verb completes the sentence? "The book ____ written by a famous author."
+        </div>
+        <div class="answers">
+            <button class="answer-button" onclick="checkAnswer('is')">is</button>
+            <button class="answer-button" onclick="checkAnswer('does')">does</button>
+            <button class="answer-button" onclick="checkAnswer('has')">has</button>
+        </div>
+        <div id="result" class="result"></div>
+        <a href="unit1activities.html" class="back-button">Back to Questions</a>
+    </div>
+
+    <script>
+        function checkAnswer(answer) {
+            const correctAnswer = 'is';
+            const resultElement = document.getElementById('result');
+            if (answer === correctAnswer) {
+                resultElement.textContent = 'Correct!';
+                resultElement.style.color = 'green';
+                const solvedQuestions = JSON.parse(localStorage.getItem('solvedQuestions')) || {};
+                solvedQuestions['grammar400'] = true;
+                localStorage.setItem('solvedQuestions', JSON.stringify(solvedQuestions));
+                setTimeout(() => {
+                    window.location.href = 'unit1activities.html';
+                }, 2000);
+            } else {
+                resultElement.textContent = 'Incorrect, try again.';
+                resultElement.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

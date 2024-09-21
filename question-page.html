@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Page</title>
+    <style>
+        body {
+            background-color: #ffe7c3; /* Background color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: #f5ebda;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 120px; /* To avoid overlap with the groups */
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .answer {
+            margin-bottom: 10px;
+        }
+
+        .answer button {
+            background-color: #f5ebda;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .answer button:hover {
+            background-color: #fbddaa;
+        }
+
+        .message {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+
+        .back-button {
+            background-color: #f5ebda;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #fbddaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question-container">
+            <div class="question" id="question"></div>
+            <div class="answers" id="answers"></div>
+        </div>
+        <div class="message" id="message"></div>
+        <button class="back-button" onclick="window.location.href='questions.html'">Back to Questions</button>
+    </div>
+
+    <script>
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = urlParams.get('score');
+        const category = urlParams.get('category');
+
+        // Example questions based on categories
+        const questions = {
+            grammar: {
+                question: `What is the grammar question (${score})?`,
+                correct: `Correct answer for Grammar (${score})`,
+                incorrect: `Incorrect answer for Grammar (${score})`,
+            },
+            listen: {
+                question: `What is the listening question (${score})?`,
+                correct: `Correct answer for Listening (${score})`,
+                incorrect: `Incorrect answer for Listening (${score})`,
+            },
+            scramble: {
+                question: `What is the scramble the word question (${score})?`,
+                correct: `Correct answer for Scramble the Word (${score})`,
+                incorrect: `Incorrect answer for Scramble the Word (${score})`,
+            },
+            fillintheblanks: {
+                question: `What is the fill in the blanks question (${score})?`,
+                correct: `Correct answer for Fill in the Blanks (${score})`,
+                incorrect: `Incorrect answer for Fill in the Blanks (${score})`,
+            },
+            multiplechoice: {
+                question: `What is the multiple choice question (${score})?`,
+                correct: `Correct answer for Multiple Choice (${score})`,
+                incorrect: `Incorrect answer for Multiple Choice (${score})`,
+            },
+        };
+
+        // Get the question data based on the category
+        const questionData = questions[category] || {
+            question: 'Unspecified Question',
+            correct: 'Correct answer',
+            incorrect: 'Incorrect answer',
+        };
+
+        // Display the question
+        document.getElementById('question').innerText = questionData.question;
+
+        // Display the answers
+        const answersDiv = document.getElementById('answers');
+        answersDiv.innerHTML = `
+            <div class="answer">
+                <button onclick="checkAnswer(true)">Answer 1</button>
+            </div>
+            <div class="answer">
+                <button onclick="checkAnswer(false)">Answer 2</button>
+            </div>
+        `;
+
+        // Function to check the answer
+        function checkAnswer(isCorrect) {
+            const messageDiv = document.getElementById('message');
+            if (isCorrect) {
+                messageDiv.innerHTML = `<span class="correct">✔️ ${questionData.correct}</span>`;
+            } else {
+                messageDiv.innerHTML = `<span class="incorrect">❌ ${questionData.incorrect}</span>`;
+            }
+
+            // Save the question status in localStorage
+            const buttonId = `${category}${score}`;
+            localStorage.setItem(buttonId, 'solved');
+
+            // Redirect back to the questions page after a short delay
+            setTimeout(() => {
+                window.location.href = 'questions.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
